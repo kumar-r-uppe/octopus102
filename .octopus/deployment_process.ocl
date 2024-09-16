@@ -1,0 +1,45 @@
+step "deploy-to-iis" {
+    name = "Deploy to IIS"
+    properties = {
+        Octopus.Action.TargetRoles = "octopus102-targets"
+    }
+
+    action {
+        action_type = "Octopus.IIS"
+        properties = {
+            Octopus.Action.EnabledFeatures = "Octopus.Features.IISWebSite,Octopus.Features.ConfigurationVariables,Octopus.Features.ConfigurationTransforms"
+            Octopus.Action.IISWebSite.ApplicationPoolFrameworkVersion = "v4.0"
+            Octopus.Action.IISWebSite.ApplicationPoolIdentityType = "ApplicationPoolIdentity"
+            Octopus.Action.IISWebSite.ApplicationPoolName = "octo101"
+            Octopus.Action.IISWebSite.Bindings = "[{\"protocol\":\"http\",\"port\":\"80\",\"host\":\"\",\"thumbprint\":null,\"certificateVariable\":null,\"requireSni\":\"False\",\"enabled\":\"True\"}]"
+            Octopus.Action.IISWebSite.CreateOrUpdateWebSite = "True"
+            Octopus.Action.IISWebSite.DeploymentType = "webSite"
+            Octopus.Action.IISWebSite.EnableAnonymousAuthentication = "False"
+            Octopus.Action.IISWebSite.EnableBasicAuthentication = "False"
+            Octopus.Action.IISWebSite.EnableWindowsAuthentication = "True"
+            Octopus.Action.IISWebSite.StartApplicationPool = "True"
+            Octopus.Action.IISWebSite.StartWebSite = "True"
+            Octopus.Action.IISWebSite.VirtualDirectory.CreateOrUpdate = "False"
+            Octopus.Action.IISWebSite.WebApplication.ApplicationPoolFrameworkVersion = "v4.0"
+            Octopus.Action.IISWebSite.WebApplication.ApplicationPoolIdentityType = "ApplicationPoolIdentity"
+            Octopus.Action.IISWebSite.WebApplication.CreateOrUpdate = "False"
+            Octopus.Action.IISWebSite.WebRootType = "packageRoot"
+            Octopus.Action.IISWebSite.WebSiteName = "octo101"
+            Octopus.Action.Package.AutomaticallyRunConfigurationTransformationFiles = "True"
+            Octopus.Action.Package.AutomaticallyUpdateAppSettingsAndConnectionStrings = "True"
+            Octopus.Action.Package.DownloadOnTentacle = "False"
+            Octopus.Action.Package.FeedId = "octopus-server-built-in"
+            Octopus.Action.Package.PackageId = "101"
+        }
+        worker_pool_variable = ""
+
+        packages {
+            acquisition_location = "Server"
+            feed = "octopus-server-built-in"
+            package_id = "101"
+            properties = {
+                SelectionMode = "immediate"
+            }
+        }
+    }
+}
