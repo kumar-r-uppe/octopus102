@@ -6,8 +6,12 @@ step "deploy-to-iis" {
 
     action {
         action_type = "Octopus.IIS"
+        is_required = true
         properties = {
+            Octopus.Action.AutoRetry.MaximumCount = "3"
+            Octopus.Action.AutoRetry.MinimumBackoff = "15"
             Octopus.Action.EnabledFeatures = "Octopus.Features.IISWebSite,Octopus.Features.ConfigurationVariables,Octopus.Features.ConfigurationTransforms"
+            Octopus.Action.ExecutionTimeout.Minutes = "1"
             Octopus.Action.IISWebSite.ApplicationPoolFrameworkVersion = "v4.0"
             Octopus.Action.IISWebSite.ApplicationPoolIdentityType = "ApplicationPoolIdentity"
             Octopus.Action.IISWebSite.ApplicationPoolName = "octo101"
@@ -30,6 +34,7 @@ step "deploy-to-iis" {
             Octopus.Action.Package.DownloadOnTentacle = "False"
             Octopus.Action.Package.FeedId = "octopus-server-built-in"
             Octopus.Action.Package.PackageId = "101"
+            Octopus.Action.RunOnServer = "false"
         }
         worker_pool_variable = ""
 
