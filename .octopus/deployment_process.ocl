@@ -7,7 +7,9 @@ step "deploy-to-iis" {
     action {
         action_type = "Octopus.IIS"
         properties = {
+            Octopus.Action.AutoRetry.MaximumCount = "3"
             Octopus.Action.EnabledFeatures = ",Octopus.Features.IISWebSite,Octopus.Features.ConfigurationTransforms,Octopus.Features.ConfigurationVariables"
+            Octopus.Action.ExecutionTimeout.Minutes = "1"
             Octopus.Action.IISWebSite.ApplicationPoolFrameworkVersion = "v4.0"
             Octopus.Action.IISWebSite.ApplicationPoolIdentityType = "LocalSystem"
             Octopus.Action.IISWebSite.ApplicationPoolName = "octo-deploy"
