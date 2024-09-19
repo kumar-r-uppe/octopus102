@@ -13,7 +13,7 @@ step "deploy-to-iis" {
             Octopus.Action.IISWebSite.ApplicationPoolFrameworkVersion = "v4.0"
             Octopus.Action.IISWebSite.ApplicationPoolIdentityType = "LocalSystem"
             Octopus.Action.IISWebSite.ApplicationPoolName = "octo-deploy"
-            Octopus.Action.IISWebSite.Bindings = "[{\"protocol\":\"http\",\"ipAddress\":\"\",\"port\":\"8081\",\"host\":\"localhost\",\"thumbprint\":null,\"certificateVariable\":null,\"requireSni\":\"False\",\"enabled\":\"True\"},{\"protocol\":\"https\",\"ipAddress\":\"https://10.81.4.64/\",\"port\":\"443\",\"host\":\"10.81.4.64\",\"thumbprint\":\"4a759df02a0abf94ddaa6c6547de51113e38b158\",\"certificateVariable\":null,\"requireSni\":\"False\",\"enabled\":\"True\"}]"
+            Octopus.Action.IISWebSite.Bindings = "[{\"protocol\":\"https\",\"ipAddress\":\"https://10.81.4.64/\",\"port\":\"443\",\"host\":\"10.81.4.64\",\"thumbprint\":\"4a759df02a0abf94ddaa6c6547de51113e38b158\",\"certificateVariable\":null,\"requireSni\":\"False\",\"enabled\":\"True\"}]"
             Octopus.Action.IISWebSite.CreateOrUpdateWebSite = "True"
             Octopus.Action.IISWebSite.DeploymentType = "webSite"
             Octopus.Action.IISWebSite.EnableAnonymousAuthentication = "False"
